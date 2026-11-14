@@ -1,0 +1,36 @@
+{
+  "name": "The Flattering Baseline",
+  "short_name": "flattering-baseline",
+  "slug": "flattering-baseline",
+  "description": "The same promo weekends can be up against the weeks before and flat against last year. A command you run on a register export you already have turns one claimed lift into four numbers, each with what that comparison cannot rule out.",
+  "url": "https://greattombproductions.github.io/flattering-baseline/",
+  "repo": "https://github.com/GreatTombProductions/flattering-baseline",
+  "github": "https://github.com/GreatTombProductions/flattering-baseline",
+  "data_source": "The operator's own register export (date, store, amount the customer paid), read locally. The worked figures on the page are invented.",
+  "data_url": "https://greattombproductions.github.io/flattering-baseline/",
+  "records": "0 stored records. The page is an explainer. The command keeps nothing.",
+  "detail": "Static page plus a standard-library Python command. You name the promo dates and the stores that ran the promo. It prints four comparisons of the same window: the same weekdays in the weeks immediately before, those calendar dates one year earlier, other stores in the file, and Monday–Thursday of the promo weeks. Each row states what that comparison cannot rule out. Per day uses dates present in the file; a missing date is not zero. No vendor login and no accounts.",
+  "asymmetry": "The comparison is the claim. A promo deck shows one lift, often against the period just before, and that period may itself have been soft. The same dates a year earlier, other stores, and the weekdays of those weeks are in an export the operator already holds. The deck does not show the spread.",
+  "pipeline_note": "No pipeline. baseline.py and tests/test_baseline.py are the command and its local-only tests. The dollars on the page are an invented illustration, not a receipt.",
+  "search_modes": [
+    "promo lift depends on the comparison",
+    "was the prior period soft",
+    "same weekends versus last year"
+  ],
+  "search_terms": [
+    "promo report one number",
+    "previous period versus last year",
+    "weekend sales comparison",
+    "which baseline",
+    "register export lift"
+  ],
+  "released_date": "2026-11-14",
+  "status": "released",
+  "deploy_branch": "gh-pages",
+  "deploy_method": "static",
+  "feedback_categories": [
+    "methodology",
+    "bug",
+    "feature"
+  ]
+}

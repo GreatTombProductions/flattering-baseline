@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Flattering Baseline — Which comparison your promo's lift depends on</title>
+<meta name="description" content="The same promo weekends can be up against the weeks before and flat against last year. A local command turns one claimed lift into four numbers, each with what that comparison cannot rule out.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip" href="#command">Skip to the command</a>
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">For someone whose promo deck has one lift number</p>
+    <h1>The Flattering Baseline</h1>
+    <p class="lede">The same weekends can read up against the weeks before and flat against last year. The comparison was chosen. You already have the register export.</p>
+    <p class="privacy">This page stores nothing and does not log into a vendor. The command runs on your computer, on a file you already exported.</p>
+  </div>
+</header>
+<main class="wrap">
+  <section class="card">
+    <h2>One claimed lift, four numbers</h2>
+    <p>These dollars are invented, so the shape is visible. They are not a store. Three Friday–Sunday weekends, one store on the promo and one store that was not. The command prints:</p>
+    <ul class="spread">
+      <li><strong>Prior period, +7.0%.</strong> Promo days $8,560.00 a day. The same weekdays in the three weeks before, $8,000.00 a day. <span class="limit">Cannot rule out: no seasonality control. A soft stretch before the promo makes an ordinary week look like a lift.</span></li>
+      <li><strong>Year earlier, 0.0%.</strong> Those same October dates a year earlier were also $8,560.00 a day. <span class="limit">Cannot rule out: no chain control. The whole street may have moved, and these calendar dates can fall on different weekdays.</span></li>
+      <li><strong>Other stores, 0.0%.</strong> The store that did not run the promo was also $8,560.00 a day on those dates. <span class="limit">Cannot rule out: this assumes the other stores are comparable. They can differ in size, hours, or neighborhood.</span></li>
+      <li><strong>Weekdays, +22.3%.</strong> Monday–Thursday of the promo weeks were $7,000.00 a day. <span class="limit">Cannot rule out: this only isolates a weekend-versus-weekday shift. Weekends differ from weekdays for reasons that have nothing to do with the promo.</span></li>
+    </ul>
+    <p>The weekends before the promo were themselves −20.0% against those dates a year earlier ($8,000.00 a day against $10,000.00). That is why +7% can be the soft baseline, not the promo. The spread is the result. None of the four is the number to put back in the deck.</p>
+  </section>
+
+  <section class="card" id="command">
+    <h2>Run it on your export</h2>
+    <p>Use a file you already have. Each row needs a date and the amount the customer paid. A store column is needed when more than one store is in the file. A customer column is ignored. Sums are taken for you, so one row per sale and one row per day both work.</p>
+    <pre><code>python3 baseline.py illustrative.csv \
+  --promo 2026-10-09:2026-10-11 \
+  --promo 2026-10-16:2026-10-18 \
+  --promo 2026-10-23:2026-10-25 \
+  --stores main</code></pre>
+    <p><code>illustrative.csv</code> is the invented file above, in <code>example/illustrative.csv</code>. For your own file, name the stores that ran the promo. If you do not, and the file has more than one store, the command stops rather than mixing them.</p>
+    <h3>What the four rows are</h3>
+    <ul>
+      <li><strong>Prior period.</strong> The same weekdays, for the same number of weeks, immediately before the first promo week.</li>
+      <li><strong>Year earlier.</strong> Those calendar dates one year earlier. 29 February becomes 28 February.</li>
+      <li><strong>Other stores.</strong> The same promo dates, at stores you did not name. If the file has only your stores, the row says <code>not in this file</code>.</li>
+      <li><strong>Weekdays.</strong> Monday–Thursday of the promo weeks, at your stores. If a promo date is itself Monday–Thursday, that row says <code>not separate</code>.</li>
+    </ul>
+    <p>Per day uses dates that appear in the file. A missing date is not treated as zero. A closed day counts only if you include it with amount 0. A baseline that is zero or negative is <code>baseline is not positive</code>, not a percent.</p>
+  </section>
+
+  <section class="card">
+    <h2>What you can already do</h2>
+    <p>A spreadsheet can divide any two totals you choose. The report that came with the promo usually asks you to pick one comparison. Neither of those puts these four numbers on one page and says what each one leaves open. This does only that.</p>
+  </section>
+
+  <section class="card">
+    <h2>What this does not do</h2>
+    <ul>
+      <li>It does not say the promo caused the change.</li>
+      <li>It does not log into a vendor, and it does not send your file anywhere.</li>
+      <li>It does not choose which number you should repeat.</li>
+      <li>It is not a monitor. Run it when a deck arrives. Nothing here runs after that.</li>
+      <li>The dollars on this page are invented. Point the command at your own export.</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <p>A file you already exported, four comparisons, and the limit of each. No accounts.</p>
+  </div>
+</footer>
+</body>
+</html>
